@@ -96,7 +96,7 @@ module.exports = {
         'admin': `${getRemoteEntryUrl( 3100)}`,
         // Ensure that you use the port you specified in the configuration.
         // Also the name must match what you declared in the dashboard module.
-        'dashboard': `${getRemoteEntryUrl(4100, 'm')}`
+        'dashboard': `${getRemoteEntryUrl(4100)}`,
       },
     }),
     sharedMappings.getPlugin(),

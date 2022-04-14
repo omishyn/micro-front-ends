@@ -12,5 +12,9 @@ export const APP_ROUTES: Routes = [
       path: 'admin',
       loadChildren: () => import('admin/Module').then((m) => m.RemoteEntryModule)
     },
+    {
+      path: 'dashboard',
+      loadChildren: () => import('dashboard/Module').then((m) => m.RemoteEntryModule)
+    },
 ];
 

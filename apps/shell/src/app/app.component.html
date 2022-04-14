@@ -2,6 +2,7 @@
   <li><img src="../assets/angular.png" width="50"></li>
   <li><a routerLink="./">Home</a></li>
   <li><a routerLink="./admin">Admin</a></li>
+  <li><a routerLink="./dashboard">Dashboard</a></li>
   <li class="nav-item" *ngFor="let microFrontend of microFrontends"><a
     [routerLink]="microFrontend.routePath">{{ microFrontend.displayName }}</a></li>
 </ul>
