@@ -33,7 +33,7 @@ sharedMappings.register(
 module.exports = {
   output: {
     uniqueName: 'dashboard',
-    publicPath: 'auto',
+    publicPath: 'http://localhost:4100/',
   },
   optimization: {
     runtimeChunk: false,
@@ -47,11 +47,54 @@ module.exports = {
     },
   },
   plugins: [
+    // new ModuleFederationPlugin({
+    //   name: 'dashboard',
+    //   filename: 'remoteEntry.js',
+    //   exposes: {
+    //     './Module': './apps/dashboard/src/app/remote-entry/entry.module.ts',
+    //   },
+    //   shared: share({
+    //     '@angular/core': {
+    //       singleton: true,
+    //       strictVersion: true,
+    //       requiredVersion: 'auto',
+    //       includeSecondaries: true,
+    //     },
+    //     '@angular/common': {
+    //       singleton: true,
+    //       strictVersion: true,
+    //       requiredVersion: 'auto',
+    //       includeSecondaries: true,
+    //     },
+    //     '@angular/common/http': {
+    //       singleton: true,
+    //       strictVersion: true,
+    //       requiredVersion: 'auto',
+    //       includeSecondaries: true,
+    //     },
+    //     '@angular/router': {
+    //       singleton: true,
+    //       strictVersion: true,
+    //       requiredVersion: 'auto',
+    //       includeSecondaries: true,
+    //     },
+    //     rxjs: {
+    //       singleton: true,
+    //       strictVersion: true,
+    //       requiredVersion: 'auto',
+    //       includeSecondaries: true,
+    //     },
+    //     ...sharedMappings.getDescriptors(),
+    //   }),
+    //   library: {
+    //     type: 'module',
+    //   },
+    // }),
     new ModuleFederationPlugin({
-      name: 'dashboard',
-      filename: 'remoteEntry.js',
+      name: 'dynamicDashboard',
+      filename: 'dynamicRemoteEntry.js',
       exposes: {
-        './Module': './apps/dashboard/src/app/remote-entry/entry.module.ts',
+        RemoteEntryModule: './apps/dashboard/src/app/remote-entry/entry.module.ts',
       },
       shared: share({
         '@angular/core': {
@@ -86,9 +129,7 @@ module.exports = {
         },
         ...sharedMappings.getDescriptors(),
       }),
-      library: {
-        type: 'module',
-      },
+      library: { type: 'var', name: 'dynamicDashboard' },
     }),
     sharedMappings.getPlugin(),
   ],

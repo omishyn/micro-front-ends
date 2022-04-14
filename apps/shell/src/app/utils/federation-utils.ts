@@ -12,7 +12,6 @@ declare const __webpack_init_sharing__: (shareScope: string) => Promise<void>;
 declare const __webpack_share_scopes__: { default: Scope };
 
 const innerModuleMap: Record<string, boolean> = {};
-const globalWindow = window as AnyType;
 
 function loadRemoteEntry(remoteEntry: string): Promise<void> {
   return new Promise<void>((resolve, reject) => {
@@ -23,8 +22,6 @@ function loadRemoteEntry(remoteEntry: string): Promise<void> {
 
     const script = document.createElement('script');
     script.src = remoteEntry;
-    script.type = 'module';
-    script.defer = true;
 
     script.onerror = reject;
 
@@ -37,23 +34,18 @@ function loadRemoteEntry(remoteEntry: string): Promise<void> {
   });
 }
 
-declare const __webpack_exports__: AnyType;
-
 async function lookupExposedModule<T = AnyType>(options: LoadRemoteModuleOptions): Promise<T> {
   console.log('options', options);
   // Initializes the share scope. This fills it with known provided modules from this build and all remotes
   await __webpack_init_sharing__('default');
 
-  console.log('__webpack_share_scopes__', __webpack_share_scopes__);
-  console.log('__webpack_exports__', __webpack_exports__);
+  const container = (window as AnyType)[options.remoteName] as Container; // or get the container somewhere else
 
-  const appName = `${options.remoteName}/${options.exposedModule.replace('./', '')}`;
-  const container = globalWindow?.[options.remoteName] ?? globalWindow?.[appName] as Container; // or get the container somewhere else
-
-  console.log('container', container, appName);
+  console.log('container', options.remoteName, container);
 
   // Initialize the container, it may provide shared modules
   if (!container) {
+    console.log(window)
     throw new Error(`Module "${options.remoteName}" does not exist in container.`);
   }
 

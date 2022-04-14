@@ -28,17 +28,17 @@ export class MicroFrontendService {
       //   routePath: 'admin',
       //   ngModuleName: 'RemoteEntryModule',
       // },
-      // {
-      //   // For Loading
-      //   remoteEntry: 'http://localhost:4100/remoteEntry.js',
-      //   remoteName: 'dashboard',
-      //   exposedModule: './Module',
-      //
-      //   // For Routing, enabling us to ngFor over the microfrontends and dynamically create links for the routes
-      //   displayName: 'Dashboard',
-      //   routePath: 'dashboard',
-      //   ngModuleName: 'RemoteEntryModule',
-      // },
+      {
+        // For Loading
+        remoteEntry: 'http://localhost:4100/dynamicRemoteEntry.js',
+        remoteName: 'dynamicDashboard',
+        exposedModule: 'RemoteEntryModule',
+
+        // For Routing, enabling us to ngFor over the microfrontends and dynamically create links for the routes
+        displayName: 'Dynamic Dashboard',
+        routePath: 'dynamic-dashboard',
+        ngModuleName: 'RemoteEntryModule',
+      },
     ];
   }
 

@@ -96,13 +96,14 @@ module.exports = {
         'admin': `${getRemoteEntryUrl( 3100)}`,
         // Ensure that you use the port you specified in the configuration.
         // Also the name must match what you declared in the dashboard module.
-        'dashboard': `${getRemoteEntryUrl(4100)}`,
+        // 'dashboard': `${getRemoteEntryUrl(4100)}`,
+        'dynamicDashboard': `${getRemoteEntryUrl(4100, 'dynamicRemoteEntry')}`,
       },
     }),
     sharedMappings.getPlugin(),
   ],
 };
 
-function getRemoteEntryUrl(port, m= '') {
-  return `http://localhost:${port}/remoteEntry.${m}js`;
+function getRemoteEntryUrl(port, name = 'remoteEntry', m= '') {
+  return `http://localhost:${port}/${name}.${m}js`;
 }
