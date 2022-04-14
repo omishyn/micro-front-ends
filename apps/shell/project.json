@@ -64,12 +64,24 @@
           "browserTarget": "shell:build:production"
         },
         "development": {
-          "browserTarget": "shell:build:development"
+          "browserTarget": "shell:build:development",
+          "port": 5100,
+          "host": "0.0.0.0"
         }
       },
       "defaultConfiguration": "development",
       "options": {
-        "publicHost": "http://localhost:4200"
+        "publicHost": "http://localhost:5100"
+      }
+    },
+    "serve-mfe": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx serve shell",
+          "nx serve admin",
+          "nx serve dashboard"
+        ]
       }
     },
     "extract-i18n": {

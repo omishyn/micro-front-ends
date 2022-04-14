@@ -26,13 +26,11 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "500kb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "maximumWarning": "2kb"
             }
           ],
           "fileReplacements": [
@@ -64,12 +62,14 @@
           "browserTarget": "admin:build:production"
         },
         "development": {
-          "browserTarget": "admin:build:development"
+          "browserTarget": "admin:build:development",
+          "port": 3100,
+          "host": "0.0.0.0"
         }
       },
       "defaultConfiguration": "development",
       "options": {
-        "publicHost": "http://localhost:4200"
+        "publicHost": "http://localhost:3100"
       }
     },
     "extract-i18n": {
